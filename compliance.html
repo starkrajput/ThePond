@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1234,8 +1234,8 @@
 
     @media screen and (max-width: 576px) {
         .hero-title {
-              margin-top: 165px;
             font-size: 2rem;
+            margin-top: 166px;
         }
 
         .hero-subtitle {
@@ -1259,6 +1259,8 @@
             text-align: center;
         }
     }
+    
+
 </style>
 <body>
     <!-- Header Section -->
@@ -1650,7 +1652,7 @@
                         </div>
                         <p class="testimonial-text">"Dr. Akhil Billa's treatment has been life-changing for me. After suffering from chronic eczema for years, I finally found relief through his homeopathic approach. Highly recommended!"</p>
                         <div class="testimonial-author">
-                          <!--  <img src="disease-acidity.jpg" alt="Patient"> -->
+                           <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
                                 <h4>Priya Sharma</h4>
                                 <p>Eczema Patient</p>
@@ -1669,7 +1671,7 @@
                         </div>
                         <p class="testimonial-text">"I had been suffering from severe allergies for years. After just a few months of treatment with Dr. Billa, my symptoms have significantly reduced. The tele-consultation option is so convenient!"</p>
                         <div class="testimonial-author">
-                           <!--  <img src="disease-acidity.jpg" alt="Patient"> -->
+                            <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
                                 <h4>Rajesh Kumar</h4>
                                 <p>Allergy Patient</p>
@@ -1688,7 +1690,7 @@
                         </div>
                         <p class="testimonial-text">"My son had recurring respiratory issues, and conventional treatments weren't helping. Dr. Akhil's homeopathic approach has made a remarkable difference. He's patient, thorough, and truly cares about his patients."</p>
                         <div class="testimonial-author">
-                             <!--  <img src="disease-acidity.jpg" alt="Patient"> -->
+                            <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
                                 <h4>Meera Patel</h4>
                                 <p>Parent of Pediatric Patient</p>
@@ -1755,10 +1757,17 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr" target="_blank" class="social-link">
+                        <!-- Instagram Link - Will open app if installed, otherwise web -->
+                        <a href="instagram://user?username=billasclassicalhomoeopathy_"
+                           onclick="window.open('instagram://user?username=billasclassicalhomoeopathy_', '_blank'); window.location.href='https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr'; return false;"
+                           class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://wa.me/918309514273" target="_blank" class="social-link">
+
+                        <!-- WhatsApp Link - Will open app if installed, otherwise web -->
+                        <a href="https://wa.me/918309514273"
+                           onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
+                           class="social-link">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="mailto:billa.akhil1974@gmail.com" class="social-link">
@@ -1810,13 +1819,20 @@
                     <p><i class="fas fa-map-marker-alt"></i> Mansoorabad, L. B. Nagar, Hyderabad, Telangana, 500068, India</p>
                     <p><i class="fas fa-phone-alt"></i> +91 8309514273</p>
                     <p><i class="fas fa-envelope"></i> billa.akhil1974@gmail.com</p>
+                    <!-- Instagram Link - Will open app if installed, otherwise web -->
                     <div class="social-links">
-                        <a href="https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/918309514273" target="_blank" class="social-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                    <a href="instagram://user?username=billasclassicalhomoeopathy_"
+                       onclick="window.open('instagram://user?username=billasclassicalhomoeopathy_', '_blank'); window.location.href='https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr'; return false;"
+                       class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <!-- WhatsApp Link - Will open app if installed, otherwise web -->
+                    <a href="https://wa.me/918309514273"
+                       onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
+                       class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
                     </div>
                 </div>
             </div>
