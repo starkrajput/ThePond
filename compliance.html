@@ -1259,8 +1259,6 @@
             text-align: center;
         }
     }
-    
-
 </style>
 <body>
     <!-- Header Section -->
@@ -1361,16 +1359,16 @@
                         <a href="#appointment" class="btn btn-outline">Book Now</a>
                     </div>
                 </div>
-                <div class="service-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                    <div class="service-img">
-                        <img src="b4.jpg" alt="Follow-up">
-                    </div>
-                    <div class="service-content">
-                        <h3>Follow-up Care</h3>
-                        <p>Regular follow-up sessions to monitor your progress and adjust treatment plans as needed for optimal results.</p>
-                        <a href="#appointment" class="btn btn-outline">Book Now</a>
-                    </div>
-                </div>
+                <!--  <div class="service-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                      <div class="service-img">
+                          <img src="b4.jpg" alt="Follow-up">
+                      </div>
+                      <div class="service-content">
+                          <h3>Follow-up Care</h3>
+                          <p>Regular follow-up sessions to monitor your progress and adjust treatment plans as needed for optimal results.</p>
+                          <a href="#appointment" class="btn btn-outline">Book Now</a>
+                      </div>
+                  </div>-->
             </div>
         </div>
     </section>
@@ -1536,10 +1534,10 @@
                                 <div class="payment-method" data-upi="8309514273@ibl">
                                     <i class="fas fa-qrcode"></i>
                                     <span>QR Code</span>
-                                 <!--   <div class="qr-popup">
-                                        <img src="qr-code.jpg" alt="UPI QR Code">
-                                        <p>Scan to pay ₹500</p>
-                                    </div>-->
+                                    <!--   <div class="qr-popup">
+                                           <img src="qr-code.jpg" alt="UPI QR Code">
+                                           <p>Scan to pay ₹500</p>
+                                       </div>-->
                                 </div>
                             </div>
                             <p class="mt-20">UPI: 8309514273@ibl</p>
@@ -1652,7 +1650,7 @@
                         </div>
                         <p class="testimonial-text">"Dr. Akhil Billa's treatment has been life-changing for me. After suffering from chronic eczema for years, I finally found relief through his homeopathic approach. Highly recommended!"</p>
                         <div class="testimonial-author">
-                           <!-- <img src="disease-acidity.jpg" alt="Patient">-->
+                            <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
                                 <h4>Priya Sharma</h4>
                                 <p>Eczema Patient</p>
@@ -1758,9 +1756,13 @@
                     </div>
                     <div class="social-links">
                         <!-- Instagram Link - Will open app if installed, otherwise web -->
-                        <a href="instagram://user?username=billasclassicalhomoeopathy_"
-                           onclick="window.open('instagram://user?username=billasclassicalhomoeopathy_', '_blank'); window.location.href='https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr'; return false;"
-                           class="social-link">
+                        <a href="https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr" class="social-link"
+                           target="_blank" rel="noopener noreferrer"
+                           onclick="event.preventDefault();
+                    window.open('https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr', '_blank');
+                    if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                        window.location.href = 'instagram://user?username=billasclassicalhomoeopathy_';
+                    }">
                             <i class="fab fa-instagram"></i>
                         </a>
 
@@ -1821,18 +1823,22 @@
                     <p><i class="fas fa-envelope"></i> billa.akhil1974@gmail.com</p>
                     <!-- Instagram Link - Will open app if installed, otherwise web -->
                     <div class="social-links">
-                    <a href="instagram://user?username=billasclassicalhomoeopathy_"
-                       onclick="window.open('instagram://user?username=billasclassicalhomoeopathy_', '_blank'); window.location.href='https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr'; return false;"
-                       class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                        <a href="https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr" class="social-link"
+                           target="_blank" rel="noopener noreferrer"
+                           onclick="event.preventDefault();
+                    window.open('https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr', '_blank');
+                    if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                        window.location.href = 'instagram://user?username=billasclassicalhomoeopathy_';
+                    }">
+                            <i class="fab fa-instagram"></i>
+                        </a>
 
-                    <!-- WhatsApp Link - Will open app if installed, otherwise web -->
-                    <a href="https://wa.me/918309514273"
-                       onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
-                       class="social-link">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+                        <!-- WhatsApp Link - Will open app if installed, otherwise web -->
+                        <a href="https://wa.me/918309514273"
+                           onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
+                           class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1976,49 +1982,95 @@
             }
 
             // ======= NEW FUNCTIONALITY =======
-
-            // Country timing tabs
             const timingTabs = document.querySelectorAll('.country-tab[data-timing]');
             const timingCountries = document.querySelectorAll('.timing-country');
 
-            timingTabs.forEach(tab => {
-                tab.addEventListener('click', function () {
-                    timingTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
+            // Enhanced tab switching logic
+            function setupTimingTabs() {
+                const indiaTimingContainer = document.querySelector('.india-timing');
 
-                    const timing = this.getAttribute('data-timing');
+                // Create day type buttons for India
+                if (indiaTimingContainer && !document.querySelector('.day-type-tabs')) {
+                    const dayTypeTabs = document.createElement('div');
+                    dayTypeTabs.classList.add('day-type-tabs', 'country-tabs', 'mb-20');
 
-                    timingCountries.forEach(c => {
-                        c.classList.remove('active');
-                        if (c.classList.contains(timing + '-timing')) {
-                            c.classList.add('active');
-                        }
+                    const weekdayButton = document.createElement('button');
+                    weekdayButton.classList.add('country-tab', 'active');
+                    weekdayButton.setAttribute('data-timing', 'weekday');
+                    weekdayButton.textContent = 'Monday-Saturday';
+
+                    const sundayButton = document.createElement('button');
+                    sundayButton.classList.add('country-tab');
+                    sundayButton.setAttribute('data-timing', 'sunday');
+                    sundayButton.textContent = 'Sunday';
+
+                    dayTypeTabs.appendChild(weekdayButton);
+                    dayTypeTabs.appendChild(sundayButton);
+
+                    indiaTimingContainer.insertBefore(dayTypeTabs, indiaTimingContainer.firstChild);
+                }
+
+                // Day type tab event listeners
+                const dayTypeTabs = document.querySelectorAll('.day-type-tabs .country-tab');
+                dayTypeTabs.forEach(tab => {
+                    tab.addEventListener('click', function () {
+                        // Remove active from all day type tabs
+                        dayTypeTabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+
+                        const dayType = this.getAttribute('data-timing');
+                        const timings = document.querySelectorAll('.timing');
+
+                        // Show/hide timings based on day type
+                        timings.forEach(timing => {
+                            timing.classList.remove('show');
+                            if (timing.classList.contains(dayType)) {
+                                timing.classList.add('show');
+                            }
+                        });
+
+                        // Update time select options
+                        updateTimeSelectOptions();
                     });
-
-                    // Update time select based on country
-                    updateTimeSelectOptions();
                 });
-            });
 
-            // Country payment tabs
-            const countryTabs = document.querySelectorAll('.country-tab[data-country]');
-            const paymentCountries = document.querySelectorAll('.payment-country');
+                // Country tabs event listeners
+                timingTabs.forEach(tab => {
+                    tab.addEventListener('click', function () {
+                        timingTabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
 
-            countryTabs.forEach(tab => {
-                tab.addEventListener('click', function () {
-                    countryTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
+                        const timing = this.getAttribute('data-timing');
 
-                    const country = this.getAttribute('data-country');
+                        timingCountries.forEach(c => {
+                            c.classList.remove('active');
+                            if (c.classList.contains(timing + '-timing')) {
+                                c.classList.add('active');
+                            }
+                        });
 
-                    paymentCountries.forEach(c => {
-                        c.classList.remove('active');
-                        if (c.classList.contains(country + '-payment')) {
-                            c.classList.add('active');
+                        // Reset day type tabs for India
+                        if (timing === 'india') {
+                            const dayTypeTabs = document.querySelectorAll('.day-type-tabs .country-tab');
+                            dayTypeTabs.forEach((tab, index) => {
+                                tab.classList.toggle('active', index === 0);
+                            });
+
+                            // Show weekday timings by default
+                            const timings = document.querySelectorAll('.timing');
+                            timings.forEach(timing => {
+                                timing.classList.remove('show');
+                                if (timing.classList.contains('weekday')) {
+                                    timing.classList.add('show');
+                                }
+                            });
                         }
+
+                        // Update time select options
+                        updateTimeSelectOptions();
                     });
                 });
-            });
+            }
 
             // Initialize timings based on day of week
             function updateAvailableTimings() {
@@ -2027,17 +2079,24 @@
                 const dayOfWeek = selectedDate.getDay(); // 0 is Sunday, 1 is Monday, etc.
                 const isSunday = dayOfWeek === 0;
 
-                // India timings
-                const weekdayTimings = document.querySelectorAll('.timing.weekday');
-                const sundayTimings = document.querySelectorAll('.timing.sunday');
+                // Country and date-based timing selection
+                const countrySelect = document.getElementById('country');
+                const country = countrySelect ? countrySelect.value : 'india';
 
-                weekdayTimings.forEach(timing => {
-                    timing.classList.toggle('show', !isSunday);
-                });
+                if (country === 'india') {
+                    const weekdayTimings = document.querySelectorAll('.timing.weekday');
+                    const sundayTimings = document.querySelectorAll('.timing.sunday');
+                    const dayTypeTabs = document.querySelectorAll('.day-type-tabs .country-tab');
 
-                sundayTimings.forEach(timing => {
-                    timing.classList.toggle('show', isSunday);
-                });
+                    // Reset day type tabs for India
+                    dayTypeTabs.forEach((tab, index) => {
+                        tab.classList.toggle('active', index === 0);
+                    });
+
+                    // Show only weekday timings by default
+                    weekdayTimings.forEach(timing => timing.classList.add('show'));
+                    sundayTimings.forEach(timing => timing.classList.remove('show'));
+                }
 
                 // Update time select options
                 updateTimeSelectOptions();
@@ -2056,16 +2115,16 @@
                     timeSelect.remove(1);
                 }
 
-                const selectedDate = new Date(dateInput.value);
-                const dayOfWeek = selectedDate.getDay(); // 0 is Sunday, 1 is Monday, etc.
-                const isSunday = dayOfWeek === 0;
                 const country = countrySelect.value;
+                const dayTypeTabs = document.querySelectorAll('.day-type-tabs .country-tab');
+                const activeDayTypeTab = Array.from(dayTypeTabs).find(tab => tab.classList.contains('active'));
+                const dayType = activeDayTypeTab ? activeDayTypeTab.getAttribute('data-timing') : 'weekday';
 
-                // Get times based on country and day
+                // Get times based on country and day type
                 let times = [];
 
                 if (country === 'india') {
-                    if (isSunday) {
+                    if (dayType === 'sunday') {
                         // Sunday times for India
                         times = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM',
                             '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM'];
@@ -2102,13 +2161,14 @@
 
             const countrySelect = document.getElementById('country');
             if (countrySelect) {
-                countrySelect.addEventListener('change', updateTimeSelectOptions);
+                countrySelect.addEventListener('change', function () {
+                    // Reset day type tabs when country changes
+                    updateAvailableTimings();
+                    updateTimeSelectOptions();
+                });
             }
 
-            // Initialize timings on page load
-            updateAvailableTimings();
-
-            // Initialize selected time slot
+            // Initialize time slots
             const timeSlots = document.querySelectorAll('.timing');
             timeSlots.forEach(slot => {
                 slot.addEventListener('click', function () {
@@ -2131,6 +2191,45 @@
                 });
             });
 
+            // Add event listener to time slots and time select to synchronize
+            function setupTimeSync() {
+                const timeSelect = document.getElementById('time');
+                const timeSlots = document.querySelectorAll('.timing');
+
+                // Sync time select with time slots
+                timeSelect.addEventListener('change', function () {
+                    const selectedTime = this.value;
+
+                    // Deactivate all time slots
+                    timeSlots.forEach(slot => {
+                        slot.classList.remove('active');
+
+                        // Activate matching time slot
+                        if (slot.textContent.trim() === selectedTime && slot.classList.contains('show')) {
+                            slot.classList.add('active');
+                        }
+                    });
+                });
+
+                // Sync time slots with time select
+                timeSlots.forEach(slot => {
+                    slot.addEventListener('click', function () {
+                        if (!this.classList.contains('show')) return;
+
+                        const time = this.textContent.trim();
+
+                        // Update time select
+                        timeSelect.value = time;
+                    });
+                });
+            }
+
+
+            setupTimingTabs();
+            updateAvailableTimings();
+            updateTimeSelectOptions();
+            setupTimeSync();
+
             // Get payment method elements
             // Enhanced payment confirmation modal with image optimization
             const paymentConfirmation = document.getElementById('paymentConfirmation');
@@ -2146,175 +2245,175 @@
             // Add enhanced styles
             const enhancedStyles = document.createElement('style');
             enhancedStyles.textContent = `
-            /* Payment Modal Overlay */
-            .payment-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.7);
-                z-index: 1000;
-                display: none;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
+                    /* Payment Modal Overlay */
+                    .payment-overlay {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: rgba(0, 0, 0, 0.7);
+                        z-index: 1000;
+                        display: none;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
 
-            .payment-overlay.active {
-                opacity: 1;
-            }
+                    .payment-overlay.active {
+                        opacity: 1;
+                    }
 
-            /* Payment Confirmation Modal */
-            .payment-confirmation {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0.9);
-                z-index: 1001;
-                width: 90%;
-                max-width: 500px;
-                max-height: 90vh;
-                overflow-y: auto;
-                background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-                border-radius: 12px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                padding: 25px;
-                opacity: 0;
-                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                display: none;
-                border-top: 5px solid #4CAF50;
-            }
+                    /* Payment Confirmation Modal */
+                    .payment-confirmation {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) scale(0.9);
+                        z-index: 1001;
+                        width: 90%;
+                        max-width: 500px;
+                        max-height: 90vh;
+                        overflow-y: auto;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+                        border-radius: 12px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                        padding: 25px;
+                        opacity: 0;
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        display: none;
+                        border-top: 5px solid #4CAF50;
+                    }
 
-            .payment-confirmation.active {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
+                    .payment-confirmation.active {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1);
+                    }
 
-            .close-payment-btn {
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: #666;
-                cursor: pointer;
-                transition: color 0.2s;
-            }
+                    .close-payment-btn {
+                        position: absolute;
+                        top: 15px;
+                        right: 15px;
+                        background: none;
+                        border: none;
+                        font-size: 1.5rem;
+                        color: #666;
+                        cursor: pointer;
+                        transition: color 0.2s;
+                    }
 
-            .close-payment-btn:hover {
-                color: #e74c3c;
-            }
+                    .close-payment-btn:hover {
+                        color: #e74c3c;
+                    }
 
-            /* Toast Notifications */
-            .toast {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 15px 25px;
-                border-radius: 8px;
-                color: white;
-                font-weight: 500;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                z-index: 1100;
-                opacity: 0;
-                transition: opacity 0.3s, transform 0.3s;
-                max-width: 90%;
-                text-align: center;
-            }
+                    /* Toast Notifications */
+                    .toast {
+                        position: fixed;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        padding: 15px 25px;
+                        border-radius: 8px;
+                        color: white;
+                        font-weight: 500;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        z-index: 1100;
+                        opacity: 0;
+                        transition: opacity 0.3s, transform 0.3s;
+                        max-width: 90%;
+                        text-align: center;
+                    }
 
-            .toast.show {
-                opacity: 1;
-                transform: translateX(-50%) translateY(-20px);
-            }
+                    .toast.show {
+                        opacity: 1;
+                        transform: translateX(-50%) translateY(-20px);
+                    }
 
-            .toast-success {
-                background-color: #2ecc71;
-            }
+                    .toast-success {
+                        background-color: #2ecc71;
+                    }
 
-            .toast-error {
-                background-color: #e74c3c;
-            }
+                    .toast-error {
+                        background-color: #e74c3c;
+                    }
 
-            /* Enhanced Form Elements */
-            .payment-confirmation .form-group {
-                margin-bottom: 20px;
-            }
+                    /* Enhanced Form Elements */
+                    .payment-confirmation .form-group {
+                        margin-bottom: 20px;
+                    }
 
-            .payment-confirmation label {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: 600;
-                color: #333;
-            }
+                    .payment-confirmation label {
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 600;
+                        color: #333;
+                    }
 
-            .payment-confirmation input,
-            .payment-confirmation textarea,
-            .payment-confirmation select {
-                width: 100%;
-                padding: 12px 15px;
-                border: 1px solid #ddd;
-                border-radius: 6px;
-                font-size: 16px;
-                transition: all 0.3s;
-            }
+                    .payment-confirmation input,
+                    .payment-confirmation textarea,
+                    .payment-confirmation select {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 6px;
+                        font-size: 16px;
+                        transition: all 0.3s;
+                    }
 
-            .payment-confirmation input:focus,
-            .payment-confirmation textarea:focus,
-            .payment-confirmation select:focus {
-                border-color: #4CAF50;
-                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-                outline: none;
-            }
+                    .payment-confirmation input:focus,
+                    .payment-confirmation textarea:focus,
+                    .payment-confirmation select:focus {
+                        border-color: #4CAF50;
+                        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+                        outline: none;
+                    }
 
-            .payment-confirmation button[type="submit"] {
-                background: linear-gradient(to right, #4CAF50, #2E7D32);
-                color: white;
-                border: none;
-                padding: 14px;
-                border-radius: 6px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                width: 100%;
-                transition: all 0.3s;
-                margin-top: 10px;
-            }
+                    .payment-confirmation button[type="submit"] {
+                        background: linear-gradient(to right, #4CAF50, #2E7D32);
+                        color: white;
+                        border: none;
+                        padding: 14px;
+                        border-radius: 6px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        width: 100%;
+                        transition: all 0.3s;
+                        margin-top: 10px;
+                    }
 
-            .payment-confirmation button[type="submit"]:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
-            }
+                    .payment-confirmation button[type="submit"]:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+                    }
 
-            .payment-confirmation button[type="submit"]:disabled {
-                background: #ccc;
-                transform: none;
-                box-shadow: none;
-                cursor: not-allowed;
-            }
+                    .payment-confirmation button[type="submit"]:disabled {
+                        background: #ccc;
+                        transform: none;
+                        box-shadow: none;
+                        cursor: not-allowed;
+                    }
 
-            /* Image Preview */
-            .image-preview {
-                margin-top: 15px;
-                text-align: center;
-            }
+                    /* Image Preview */
+                    .image-preview {
+                        margin-top: 15px;
+                        text-align: center;
+                    }
 
-            .preview-image {
-                max-width: 100%;
-                max-height: 200px;
-                border-radius: 6px;
-                border: 1px solid #ddd;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
+                    .preview-image {
+                        max-width: 100%;
+                        max-height: 200px;
+                        border-radius: 6px;
+                        border: 1px solid #ddd;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    }
 
-            /* Responsive Adjustments */
-            @media (max-width: 600px) {
-                .payment-confirmation {
-                    width: 95%;
-                    padding: 20px 15px;
-                }
-            }
+                    /* Responsive Adjustments */
+                    @media (max-width: 600px) {
+                        .payment-confirmation {
+                            width: 95%;
+                            padding: 20px 15px;
+                        }
+                    }
 `;
             document.head.appendChild(enhancedStyles);
 
@@ -2468,136 +2567,136 @@
             // Add glowing animation styles
             const glowStyles = document.createElement('style');
             glowStyles.textContent = `
-            @keyframes glow {
-                0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
-                50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.9); }
-                100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
-            }
+                    @keyframes glow {
+                        0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
+                        50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.9); }
+                        100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
+                    }
 
-            .btn-glow {
-                animation: glow 1.5s infinite;
-                position: relative;
-                transform: translateY(-2px);
-            }
+                    .btn-glow {
+                        animation: glow 1.5s infinite;
+                        position: relative;
+                        transform: translateY(-2px);
+                    }
 
-            .btn-glow::after {
-                content: '';
-                position: absolute;
-                top: -2px;
-                left: -2px;
-                right: -2px;
-                bottom: -2px;
-                border-radius: 30px;
-                border: 2px solid rgba(76, 175, 80, 0.5);
-                animation: glow 1.5s infinite;
-                z-index: -1;
-            }
+                    .btn-glow::after {
+                        content: '';
+                        position: absolute;
+                        top: -2px;
+                        left: -2px;
+                        right: -2px;
+                        bottom: -2px;
+                        border-radius: 30px;
+                        border: 2px solid rgba(76, 175, 80, 0.5);
+                        animation: glow 1.5s infinite;
+                        z-index: -1;
+                    }
 
-            /* Enhanced payment steps */
-            .payment-steps {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 25px;
-                position: relative;
-            }
+                    /* Enhanced payment steps */
+                    .payment-steps {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 25px;
+                        position: relative;
+                    }
 
-            .payment-steps::before {
-                content: '';
-                position: absolute;
-                top: 15px;
-                left: 0;
-                right: 0;
-                height: 2px;
-                background-color: #e0e0e0;
-                z-index: 1;
-            }
+                    .payment-steps::before {
+                        content: '';
+                        position: absolute;
+                        top: 15px;
+                        left: 0;
+                        right: 0;
+                        height: 2px;
+                        background-color: #e0e0e0;
+                        z-index: 1;
+                    }
 
-            .step {
-                text-align: center;
-                flex: 1;
-                position: relative;
-                z-index: 2;
-            }
+                    .step {
+                        text-align: center;
+                        flex: 1;
+                        position: relative;
+                        z-index: 2;
+                    }
 
-            .step-number {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 30px;
-                height: 30px;
-                background-color: #e0e0e0;
-                color: #666;
-                border-radius: 50%;
-                margin-bottom: 8px;
-                font-weight: bold;
-                transition: all 0.3s ease;
-            }
+                    .step-number {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background-color: #e0e0e0;
+                        color: #666;
+                        border-radius: 50%;
+                        margin-bottom: 8px;
+                        font-weight: bold;
+                        transition: all 0.3s ease;
+                    }
 
-            .step.active .step-number {
-                background-color: #4CAF50;
-                color: white;
-            }
+                    .step.active .step-number {
+                        background-color: #4CAF50;
+                        color: white;
+                    }
 
-            .step-text {
-                font-size: 14px;
-                color: #666;
-                transition: all 0.3s ease;
-            }
+                    .step-text {
+                        font-size: 14px;
+                        color: #666;
+                        transition: all 0.3s ease;
+                    }
 
-            .step.active .step-text {
-                color: #4CAF50;
-                font-weight: 600;
-            }
+                    .step.active .step-text {
+                        color: #4CAF50;
+                        font-weight: 600;
+                    }
 
-            /* QR container enhancements */
-            .qr-container {
-                background: white;
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 20px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                text-align: center;
-                border: 1px solid #e0e0e0;
-            }
+                    /* QR container enhancements */
+                    .qr-container {
+                        background: white;
+                        border-radius: 12px;
+                        padding: 20px;
+                        margin-bottom: 20px;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                        text-align: center;
+                        border: 1px solid #e0e0e0;
+                    }
 
-            .qr-container img {
-                max-width: 200px;
-                margin: 0 auto 15px;
-                display: block;
-                border: 1px solid #eee;
-                padding: 10px;
-                background: white;
-            }
+                    .qr-container img {
+                        max-width: 200px;
+                        margin: 0 auto 15px;
+                        display: block;
+                        border: 1px solid #eee;
+                        padding: 10px;
+                        background: white;
+                    }
 
-            .upi-details {
-                background: #f9f9f9;
-                padding: 15px;
-                border-radius: 8px;
-                margin-top: 15px;
-            }
+                    .upi-details {
+                        background: #f9f9f9;
+                        padding: 15px;
+                        border-radius: 8px;
+                        margin-top: 15px;
+                    }
 
-            .upi-details p {
-                margin: 8px 0;
-            }
+                    .upi-details p {
+                        margin: 8px 0;
+                    }
 
-            #upiIdDisplay {
-                font-weight: bold;
-                color: #2E7D32;
-            }
+                    #upiIdDisplay {
+                        font-weight: bold;
+                        color: #2E7D32;
+                    }
 
-            #copyUpiBtn {
-                background: #4CAF50;
-                color: white;
-                border: none;
-                padding: 8px 15px;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
+                    #copyUpiBtn {
+                        background: #4CAF50;
+                        color: white;
+                        border: none;
+                        padding: 8px 15px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                    }
 
-            #copyUpiBtn:hover {
-                background: #3d8b40;
-            }
+                    #copyUpiBtn:hover {
+                        background: #3d8b40;
+                    }
 `;
             document.head.appendChild(glowStyles);
 
@@ -2610,19 +2709,19 @@
                 const stepsDiv = document.createElement('div');
                 stepsDiv.className = 'payment-steps';
                 stepsDiv.innerHTML = `
-                <div class="step ${currentStep >= 1 ? 'active' : ''}">
-                    <div class="step-number">1</div>
-                    <div class="step-text">Select Method</div>
-                </div>
-                <div class="step ${currentStep >= 2 ? 'active' : ''}">
-                    <div class="step-number">2</div>
-                    <div class="step-text">Make Payment</div>
-                </div>
-                <div class="step ${currentStep >= 3 ? 'active' : ''}">
-                    <div class="step-number">3</div>
-                    <div class="step-text">Confirm Details</div>
-                </div>
-            `;
+                        <div class="step ${currentStep >= 1 ? 'active' : ''}">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Select Method</div>
+                        </div>
+                        <div class="step ${currentStep >= 2 ? 'active' : ''}">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Make Payment</div>
+                        </div>
+                        <div class="step ${currentStep >= 3 ? 'active' : ''}">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Confirm Details</div>
+                        </div>
+                    `;
 
                 // Get the form
                 const form = paymentConfirmation.querySelector('form');
@@ -2631,21 +2730,21 @@
                 const qrContainer = document.createElement('div');
                 qrContainer.className = 'qr-container';
                 qrContainer.innerHTML = `
-                <h4 style="margin-bottom: 15px; color: #2E7D32;">Complete Your Payment</h4>
-                <img src="qr-code.jpg" alt="Payment QR Code">
-                <div class="upi-details">
-                    <p><strong>Scan to pay ₹500</strong></p>
-                    <p>UPI ID: <span id="upiIdDisplay">8309514273@ibl</span></p>
-                    <p style="margin-top: 15px;">
-                        <button type="button" id="copyUpiBtn" class="btn btn-sm">
-                            <i class="fas fa-copy"></i> Copy UPI ID
-                        </button>
-                    </p>
-                    <p style="font-size: 12px; color: #666; margin-top: 15px;">
-                        Or open your UPI app and enter the UPI ID manually
-                    </p>
-                </div>
-            `;
+                        <h4 style="margin-bottom: 15px; color: #2E7D32;">Complete Your Payment</h4>
+                        <img src="qr-code.jpg" alt="Payment QR Code">
+                        <div class="upi-details">
+                            <p><strong>Scan to pay ₹500</strong></p>
+                            <p>UPI ID: <span id="upiIdDisplay">8309514273@ibl</span></p>
+                            <p style="margin-top: 15px;">
+                                <button type="button" id="copyUpiBtn" class="btn btn-sm">
+                                    <i class="fas fa-copy"></i> Copy UPI ID
+                                </button>
+                            </p>
+                            <p style="font-size: 12px; color: #666; margin-top: 15px;">
+                                Or open your UPI app and enter the UPI ID manually
+                            </p>
+                        </div>
+                    `;
 
                 // Insert the elements
                 paymentConfirmation.insertBefore(stepsDiv, form);
