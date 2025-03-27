@@ -61,7 +61,7 @@
 <body>
     <!-- Layer 2: Content iframe with container -->
     <div id="iframe-container">
-        <iframe id="content-frame" src="compliance.html" sandbox="allow-same-origin allow-scripts allow-forms" allowfullscreen frameborder="0" scrolling="auto"></iframe>
+        <iframe id="content-frame" class="qweewkqweweqweqmeweqweqeqwk;lwqeklweqweqfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggdretrtwetwtewtwetewtwetwetwetwetwettwtetewkl;qwekweqklwqelkweqk" src="compliance.html" sandbox="allow-same-origin allow-scripts allow-forms" allowfullscreen frameborder="0" scrolling="auto"></iframe>
     </div>
 </body>
 <script>
@@ -76,57 +76,6 @@ document.addEventListener("keydown", event => {
         event.preventDefault();
     }
 });
-
-// Additional protections
-(function() {
-    // Check for developer tools (not foolproof but adds a layer)
-    function checkDevTools() {
-        const widthThreshold = window.outerWidth - window.innerWidth > 160;
-        const heightThreshold = window.outerHeight - window.innerHeight > 160;
-        if (widthThreshold || heightThreshold) {
-            document.body.innerHTML = '<div style="text-align:center;padding:50px;">For security reasons, developer tools are not permitted on this site.</div>';
-        }
-    }
-
-    // Monitor for developer tools opening
-    window.addEventListener('resize', checkDevTools);
-    setInterval(checkDevTools, 1000);
-
-    // Get the iframe element
-    const iframe = document.getElementById('content-frame');
-
-    // Add a timestamp parameter to prevent caching
-    iframe.src = `compliance.html?t=${new Date().getTime()}`;
-
-    // Ensure proper sizing on mobile
-    function resizeIframe() {
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        // Set iframe to match viewport exactly
-        iframe.style.width = viewportWidth + 'px';
-        iframe.style.height = viewportHeight + 'px';
-
-        // Remove any potential borders or outlines
-        iframe.style.border = '0';
-        iframe.style.outline = 'none';
-
-        // Ensure container fills viewport exactly
-        document.getElementById('iframe-container').style.width = viewportWidth + 'px';
-        document.getElementById('iframe-container').style.height = viewportHeight + 'px';
-    }
-
-    // Run on load and resize
-    window.addEventListener('load', resizeIframe);
-    window.addEventListener('resize', resizeIframe);
-
-    // Call immediately as well
-    resizeIframe();
-
-    // For mobile devices specifically
-    window.addEventListener('orientationchange', function() {
-        setTimeout(resizeIframe, 100); // Short delay to allow orientation to complete
-    });
 
     // Disable view-source via URL
     if (window.location.href.includes('view-source:')) {
