@@ -1260,6 +1260,38 @@
         }
     }
 </style>
+<style>
+    #toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .toast {
+        min-width: 250px;
+        padding: 15px;
+        border-radius: 8px;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+    }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    .toast-error {
+        background-color: #dc3545;
+    }
+
+    .toast-success {
+        background-color: #28a745;
+    }
+</style>
 <body>
     <!-- Header Section -->
     <header id="header">
@@ -1282,7 +1314,7 @@
             </nav>
         </div>
     </header>
-
+    <div id="toast-container"></div>
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
@@ -1571,7 +1603,7 @@
                             </div>
                             <div class="form-group">
                                 <!-- <label for="transactionScreenshot">Transaction Screenshot *</label>
-    <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>-->
+                                <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>-->
                                 <!--  <p class="form-text">Please include transaction ID in the screenshot</p>-->
                                 <label for="transactionScreenshot">After Payment send Transaction Screenshot on Whatsapp !</label>
                                 <a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer"
@@ -1773,7 +1805,7 @@
                         </a>
 
                         <!-- WhatsApp Link - Will open app if installed, otherwise web -->
-                        <a href="https://wa.me/918309514273"  target="_blank" rel="noopener noreferrer"
+                        <a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer"
                            onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
                            class="social-link">
                             <i class="fab fa-whatsapp"></i>
@@ -2279,175 +2311,175 @@
             // Add enhanced styles
             const enhancedStyles = document.createElement('style');
             enhancedStyles.textContent = `
-                        /* Payment Modal Overlay */
-                        .payment-overlay {
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background-color: rgba(0, 0, 0, 0.7);
-                            z-index: 1000;
-                            display: none;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                        }
+                                        /* Payment Modal Overlay */
+                                        .payment-overlay {
+                                            position: fixed;
+                                            top: 0;
+                                            left: 0;
+                                            right: 0;
+                                            bottom: 0;
+                                            background-color: rgba(0, 0, 0, 0.7);
+                                            z-index: 1000;
+                                            display: none;
+                                            opacity: 0;
+                                            transition: opacity 0.3s ease;
+                                        }
 
-                        .payment-overlay.active {
-                            opacity: 1;
-                        }
+                                        .payment-overlay.active {
+                                            opacity: 1;
+                                        }
 
-                        /* Payment Confirmation Modal */
-                        .payment-confirmation {
-                            position: fixed;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%) scale(0.9);
-                            z-index: 1001;
-                            width: 90%;
-                            max-width: 500px;
-                            max-height: 90vh;
-                            overflow-y: auto;
-                            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-                            border-radius: 12px;
-                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                            padding: 25px;
-                            opacity: 0;
-                            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            display: none;
-                            border-top: 5px solid #4CAF50;
-                        }
+                                        /* Payment Confirmation Modal */
+                                        .payment-confirmation {
+                                            position: fixed;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) scale(0.9);
+                                            z-index: 1001;
+                                            width: 90%;
+                                            max-width: 500px;
+                                            max-height: 90vh;
+                                            overflow-y: auto;
+                                            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+                                            border-radius: 12px;
+                                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                                            padding: 25px;
+                                            opacity: 0;
+                                            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                                            display: none;
+                                            border-top: 5px solid #4CAF50;
+                                        }
 
-                        .payment-confirmation.active {
-                            opacity: 1;
-                            transform: translate(-50%, -50%) scale(1);
-                        }
+                                        .payment-confirmation.active {
+                                            opacity: 1;
+                                            transform: translate(-50%, -50%) scale(1);
+                                        }
 
-                        .close-payment-btn {
-                            position: absolute;
-                            top: 15px;
-                            right: 15px;
-                            background: none;
-                            border: none;
-                            font-size: 1.5rem;
-                            color: #666;
-                            cursor: pointer;
-                            transition: color 0.2s;
-                        }
+                                        .close-payment-btn {
+                                            position: absolute;
+                                            top: 15px;
+                                            right: 15px;
+                                            background: none;
+                                            border: none;
+                                            font-size: 1.5rem;
+                                            color: #666;
+                                            cursor: pointer;
+                                            transition: color 0.2s;
+                                        }
 
-                        .close-payment-btn:hover {
-                            color: #e74c3c;
-                        }
+                                        .close-payment-btn:hover {
+                                            color: #e74c3c;
+                                        }
 
-                        /* Toast Notifications */
-                        .toast {
-                            position: fixed;
-                            bottom: 20px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            padding: 15px 25px;
-                            border-radius: 8px;
-                            color: white;
-                            font-weight: 500;
-                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                            z-index: 1100;
-                            opacity: 0;
-                            transition: opacity 0.3s, transform 0.3s;
-                            max-width: 90%;
-                            text-align: center;
-                        }
+                                        /* Toast Notifications */
+                                        .toast {
+                                            position: fixed;
+                                            bottom: 20px;
+                                            left: 50%;
+                                            transform: translateX(-50%);
+                                            padding: 15px 25px;
+                                            border-radius: 8px;
+                                            color: white;
+                                            font-weight: 500;
+                                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                            z-index: 1100;
+                                            opacity: 0;
+                                            transition: opacity 0.3s, transform 0.3s;
+                                            max-width: 90%;
+                                            text-align: center;
+                                        }
 
-                        .toast.show {
-                            opacity: 1;
-                            transform: translateX(-50%) translateY(-20px);
-                        }
+                                        .toast.show {
+                                            opacity: 1;
+                                            transform: translateX(-50%) translateY(-20px);
+                                        }
 
-                        .toast-success {
-                            background-color: #2ecc71;
-                        }
+                                        .toast-success {
+                                            background-color: #2ecc71;
+                                        }
 
-                        .toast-error {
-                            background-color: #e74c3c;
-                        }
+                                        .toast-error {
+                                            background-color: #e74c3c;
+                                        }
 
-                        /* Enhanced Form Elements */
-                        .payment-confirmation .form-group {
-                            margin-bottom: 20px;
-                        }
+                                        /* Enhanced Form Elements */
+                                        .payment-confirmation .form-group {
+                                            margin-bottom: 20px;
+                                        }
 
-                        .payment-confirmation label {
-                            display: block;
-                            margin-bottom: 8px;
-                            font-weight: 600;
-                            color: #333;
-                        }
+                                        .payment-confirmation label {
+                                            display: block;
+                                            margin-bottom: 8px;
+                                            font-weight: 600;
+                                            color: #333;
+                                        }
 
-                        .payment-confirmation input,
-                        .payment-confirmation textarea,
-                        .payment-confirmation select {
-                            width: 100%;
-                            padding: 12px 15px;
-                            border: 1px solid #ddd;
-                            border-radius: 6px;
-                            font-size: 16px;
-                            transition: all 0.3s;
-                        }
+                                        .payment-confirmation input,
+                                        .payment-confirmation textarea,
+                                        .payment-confirmation select {
+                                            width: 100%;
+                                            padding: 12px 15px;
+                                            border: 1px solid #ddd;
+                                            border-radius: 6px;
+                                            font-size: 16px;
+                                            transition: all 0.3s;
+                                        }
 
-                        .payment-confirmation input:focus,
-                        .payment-confirmation textarea:focus,
-                        .payment-confirmation select:focus {
-                            border-color: #4CAF50;
-                            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-                            outline: none;
-                        }
+                                        .payment-confirmation input:focus,
+                                        .payment-confirmation textarea:focus,
+                                        .payment-confirmation select:focus {
+                                            border-color: #4CAF50;
+                                            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+                                            outline: none;
+                                        }
 
-                        .payment-confirmation button[type="submit"] {
-                            background: linear-gradient(to right, #4CAF50, #2E7D32);
-                            color: white;
-                            border: none;
-                            padding: 14px;
-                            border-radius: 6px;
-                            font-size: 16px;
-                            font-weight: 600;
-                            cursor: pointer;
-                            width: 100%;
-                            transition: all 0.3s;
-                            margin-top: 10px;
-                        }
+                                        .payment-confirmation button[type="submit"] {
+                                            background: linear-gradient(to right, #4CAF50, #2E7D32);
+                                            color: white;
+                                            border: none;
+                                            padding: 14px;
+                                            border-radius: 6px;
+                                            font-size: 16px;
+                                            font-weight: 600;
+                                            cursor: pointer;
+                                            width: 100%;
+                                            transition: all 0.3s;
+                                            margin-top: 10px;
+                                        }
 
-                        .payment-confirmation button[type="submit"]:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
-                        }
+                                        .payment-confirmation button[type="submit"]:hover {
+                                            transform: translateY(-2px);
+                                            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+                                        }
 
-                        .payment-confirmation button[type="submit"]:disabled {
-                            background: #ccc;
-                            transform: none;
-                            box-shadow: none;
-                            cursor: not-allowed;
-                        }
+                                        .payment-confirmation button[type="submit"]:disabled {
+                                            background: #ccc;
+                                            transform: none;
+                                            box-shadow: none;
+                                            cursor: not-allowed;
+                                        }
 
-                        /* Image Preview */
-                        .image-preview {
-                            margin-top: 15px;
-                            text-align: center;
-                        }
+                                        /* Image Preview */
+                                        .image-preview {
+                                            margin-top: 15px;
+                                            text-align: center;
+                                        }
 
-                        .preview-image {
-                            max-width: 100%;
-                            max-height: 200px;
-                            border-radius: 6px;
-                            border: 1px solid #ddd;
-                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                        }
+                                        .preview-image {
+                                            max-width: 100%;
+                                            max-height: 200px;
+                                            border-radius: 6px;
+                                            border: 1px solid #ddd;
+                                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                                        }
 
-                        /* Responsive Adjustments */
-                        @media (max-width: 600px) {
-                            .payment-confirmation {
-                                width: 95%;
-                                padding: 20px 15px;
-                            }
-                        }
+                                        /* Responsive Adjustments */
+                                        @media (max-width: 600px) {
+                                            .payment-confirmation {
+                                                width: 95%;
+                                                padding: 20px 15px;
+                                            }
+                                        }
 `;
             document.head.appendChild(enhancedStyles);
 
@@ -2601,136 +2633,136 @@
             // Add glowing animation styles
             const glowStyles = document.createElement('style');
             glowStyles.textContent = `
-                        @keyframes glow {
-                            0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
-                            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.9); }
-                            100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
-                        }
+                                        @keyframes glow {
+                                            0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
+                                            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.9); }
+                                            100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); }
+                                        }
 
-                        .btn-glow {
-                            animation: glow 1.5s infinite;
-                            position: relative;
-                            transform: translateY(-2px);
-                        }
+                                        .btn-glow {
+                                            animation: glow 1.5s infinite;
+                                            position: relative;
+                                            transform: translateY(-2px);
+                                        }
 
-                        .btn-glow::after {
-                            content: '';
-                            position: absolute;
-                            top: -2px;
-                            left: -2px;
-                            right: -2px;
-                            bottom: -2px;
-                            border-radius: 30px;
-                            border: 2px solid rgba(76, 175, 80, 0.5);
-                            animation: glow 1.5s infinite;
-                            z-index: -1;
-                        }
+                                        .btn-glow::after {
+                                            content: '';
+                                            position: absolute;
+                                            top: -2px;
+                                            left: -2px;
+                                            right: -2px;
+                                            bottom: -2px;
+                                            border-radius: 30px;
+                                            border: 2px solid rgba(76, 175, 80, 0.5);
+                                            animation: glow 1.5s infinite;
+                                            z-index: -1;
+                                        }
 
-                        /* Enhanced payment steps */
-                        .payment-steps {
-                            display: flex;
-                            justify-content: space-between;
-                            margin-bottom: 25px;
-                            position: relative;
-                        }
+                                        /* Enhanced payment steps */
+                                        .payment-steps {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            margin-bottom: 25px;
+                                            position: relative;
+                                        }
 
-                        .payment-steps::before {
-                            content: '';
-                            position: absolute;
-                            top: 15px;
-                            left: 0;
-                            right: 0;
-                            height: 2px;
-                            background-color: #e0e0e0;
-                            z-index: 1;
-                        }
+                                        .payment-steps::before {
+                                            content: '';
+                                            position: absolute;
+                                            top: 15px;
+                                            left: 0;
+                                            right: 0;
+                                            height: 2px;
+                                            background-color: #e0e0e0;
+                                            z-index: 1;
+                                        }
 
-                        .step {
-                            text-align: center;
-                            flex: 1;
-                            position: relative;
-                            z-index: 2;
-                        }
+                                        .step {
+                                            text-align: center;
+                                            flex: 1;
+                                            position: relative;
+                                            z-index: 2;
+                                        }
 
-                        .step-number {
-                            display: inline-flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 30px;
-                            height: 30px;
-                            background-color: #e0e0e0;
-                            color: #666;
-                            border-radius: 50%;
-                            margin-bottom: 8px;
-                            font-weight: bold;
-                            transition: all 0.3s ease;
-                        }
+                                        .step-number {
+                                            display: inline-flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            width: 30px;
+                                            height: 30px;
+                                            background-color: #e0e0e0;
+                                            color: #666;
+                                            border-radius: 50%;
+                                            margin-bottom: 8px;
+                                            font-weight: bold;
+                                            transition: all 0.3s ease;
+                                        }
 
-                        .step.active .step-number {
-                            background-color: #4CAF50;
-                            color: white;
-                        }
+                                        .step.active .step-number {
+                                            background-color: #4CAF50;
+                                            color: white;
+                                        }
 
-                        .step-text {
-                            font-size: 14px;
-                            color: #666;
-                            transition: all 0.3s ease;
-                        }
+                                        .step-text {
+                                            font-size: 14px;
+                                            color: #666;
+                                            transition: all 0.3s ease;
+                                        }
 
-                        .step.active .step-text {
-                            color: #4CAF50;
-                            font-weight: 600;
-                        }
+                                        .step.active .step-text {
+                                            color: #4CAF50;
+                                            font-weight: 600;
+                                        }
 
-                        /* QR container enhancements */
-                        .qr-container {
-                            background: white;
-                            border-radius: 12px;
-                            padding: 20px;
-                            margin-bottom: 20px;
-                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                            text-align: center;
-                            border: 1px solid #e0e0e0;
-                        }
+                                        /* QR container enhancements */
+                                        .qr-container {
+                                            background: white;
+                                            border-radius: 12px;
+                                            padding: 20px;
+                                            margin-bottom: 20px;
+                                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                                            text-align: center;
+                                            border: 1px solid #e0e0e0;
+                                        }
 
-                        .qr-container img {
-                            max-width: 200px;
-                            margin: 0 auto 15px;
-                            display: block;
-                            border: 1px solid #eee;
-                            padding: 10px;
-                            background: white;
-                        }
+                                        .qr-container img {
+                                            max-width: 200px;
+                                            margin: 0 auto 15px;
+                                            display: block;
+                                            border: 1px solid #eee;
+                                            padding: 10px;
+                                            background: white;
+                                        }
 
-                        .upi-details {
-                            background: #f9f9f9;
-                            padding: 15px;
-                            border-radius: 8px;
-                            margin-top: 15px;
-                        }
+                                        .upi-details {
+                                            background: #f9f9f9;
+                                            padding: 15px;
+                                            border-radius: 8px;
+                                            margin-top: 15px;
+                                        }
 
-                        .upi-details p {
-                            margin: 8px 0;
-                        }
+                                        .upi-details p {
+                                            margin: 8px 0;
+                                        }
 
-                        #upiIdDisplay {
-                            font-weight: bold;
-                            color: #2E7D32;
-                        }
+                                        #upiIdDisplay {
+                                            font-weight: bold;
+                                            color: #2E7D32;
+                                        }
 
-                        #copyUpiBtn {
-                            background: #4CAF50;
-                            color: white;
-                            border: none;
-                            padding: 8px 15px;
-                            border-radius: 4px;
-                            cursor: pointer;
-                            transition: all 0.3s;
-                        }
+                                        #copyUpiBtn {
+                                            background: #4CAF50;
+                                            color: white;
+                                            border: none;
+                                            padding: 8px 15px;
+                                            border-radius: 4px;
+                                            cursor: pointer;
+                                            transition: all 0.3s;
+                                        }
 
-                        #copyUpiBtn:hover {
-                            background: #3d8b40;
-                        }
+                                        #copyUpiBtn:hover {
+                                            background: #3d8b40;
+                                        }
 `;
             document.head.appendChild(glowStyles);
 
@@ -2743,19 +2775,19 @@
                 const stepsDiv = document.createElement('div');
                 stepsDiv.className = 'payment-steps';
                 stepsDiv.innerHTML = `
-                            <div class="step ${currentStep >= 1 ? 'active' : ''}">
-                                <div class="step-number">1</div>
-                                <div class="step-text">Select Method</div>
-                            </div>
-                            <div class="step ${currentStep >= 2 ? 'active' : ''}">
-                                <div class="step-number">2</div>
-                                <div class="step-text">Make Payment</div>
-                            </div>
-                            <div class="step ${currentStep >= 3 ? 'active' : ''}">
-                                <div class="step-number">3</div>
-                                <div class="step-text">Confirm Details</div>
-                            </div>
-                        `;
+                                            <div class="step ${currentStep >= 1 ? 'active' : ''}">
+                                                <div class="step-number">1</div>
+                                                <div class="step-text">Select Method</div>
+                                            </div>
+                                            <div class="step ${currentStep >= 2 ? 'active' : ''}">
+                                                <div class="step-number">2</div>
+                                                <div class="step-text">Make Payment</div>
+                                            </div>
+                                            <div class="step ${currentStep >= 3 ? 'active' : ''}">
+                                                <div class="step-number">3</div>
+                                                <div class="step-text">Confirm Details</div>
+                                            </div>
+                                        `;
 
                 // Get the form
                 const form = paymentConfirmation.querySelector('form');
@@ -2764,21 +2796,21 @@
                 const qrContainer = document.createElement('div');
                 qrContainer.className = 'qr-container';
                 qrContainer.innerHTML = `
-                            <h4 style="margin-bottom: 15px; color: #2E7D32;">Complete Your Payment</h4>
-                            <img src="qr-code.jpg" alt="Payment QR Code">
-                            <div class="upi-details">
-                                <p><strong>Scan to pay ₹500</strong></p>
-                                <p>UPI ID: <span id="upiIdDisplay">8309514273@ibl</span></p>
-                                <p style="margin-top: 15px;">
-                                    <button type="button" id="copyUpiBtn" class="btn btn-sm">
-                                        <i class="fas fa-copy"></i> Copy UPI ID
-                                    </button>
-                                </p>
-                                <p style="font-size: 12px; color: #666; margin-top: 15px;">
-                                    Or open your UPI app and enter the UPI ID manually
-                                </p>
-                            </div>
-                        `;
+                                            <h4 style="margin-bottom: 15px; color: #2E7D32;">Complete Your Payment</h4>
+                                            <img src="qr-code.jpg" alt="Payment QR Code">
+                                            <div class="upi-details">
+                                                <p><strong>Scan to pay ₹500</strong></p>
+                                                <p>UPI ID: <span id="upiIdDisplay">8309514273@ibl</span></p>
+                                                <p style="margin-top: 15px;">
+                                                    <button type="button" id="copyUpiBtn" class="btn btn-sm">
+                                                        <i class="fas fa-copy"></i> Copy UPI ID
+                                                    </button>
+                                                </p>
+                                                <p style="font-size: 12px; color: #666; margin-top: 15px;">
+                                                    Or open your UPI app and enter the UPI ID manually
+                                                </p>
+                                            </div>
+                                        `;
 
                 // Insert the elements
                 paymentConfirmation.insertBefore(stepsDiv, form);
@@ -3093,10 +3125,10 @@
 
                     const patientName = document.getElementById('patientName').value;
                     const issueDescription = document.getElementById('issueDescription').value;
-                  //  const fileInput = document.getElementById('transactionScreenshot');
+                    //  const fileInput = document.getElementById('transactionScreenshot');
 
                     // Validate form || !fileInput.files[0] and attach a transaction screenshot.
-                    if (!patientName || !issueDescription ) {
+                    if (!patientName || !issueDescription) {
                         showErrorToast('Please fill all required fields ');
                         return;
                     }
@@ -3108,9 +3140,9 @@
 
                     try {
                         // Prepare image attachment with size constraint
-                      //  const imagePrep = await prepareImageAttachment(fileInput.files[0]);
+                        //  const imagePrep = await prepareImageAttachment(fileInput.files[0]);
 
-                       // console.log(`Image compressed to: ${imagePrep.size}`);
+                        // console.log(`Image compressed to: ${imagePrep.size}`);
 
                         // Prepare email data
                         const emailData = {
@@ -3122,19 +3154,19 @@
                                 : 'UPI Payment'
                         };
                         //,
-                      //  imageSize: imagePrep.size
+                        //  imageSize: imagePrep.size
                         // Prepare attachment configuration
-                     //   const attachments = [imagePrep.attachment];
+                        //   const attachments = [imagePrep.attachment];
 
                         // Send email with attachment,
-                      /*  {
-                            attachments: attachments
-                        }*/
+                        /*  {
+                              attachments: attachments
+                          }*/
                         const response = await emailjs.send(
                             SERVICE_ID,
                             PAYMENT_TEMPLATE_ID,
                             emailData,
-                           
+
                             USER_ID
                         );
 
@@ -3225,20 +3257,52 @@
                         });
                 });
             }
+            function createToast(message, type) {
+                const toastContainer = document.getElementById('toast-container');
 
-            // Fallback error handling function
+                // Check if toast container exists
+                if (!toastContainer) {
+                    console.error('Toast container not found. Please add a div with id "toast-container" to your HTML.');
+                    return;
+                }
+
+                const toast = document.createElement('div');
+                toast.classList.add('toast', `toast-${type}`);
+                toast.textContent = message;
+
+                toastContainer.appendChild(toast);
+
+                // Trigger reflow to enable transition
+                toast.offsetHeight;
+
+                // Show toast
+                toast.classList.add('show');
+
+                // Auto-remove toast after 5 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toastContainer.removeChild(toast);
+                    }, 300);
+                }, 5000);
+            }
+
+
             function showErrorToast(message) {
                 console.error(message);
-                alert(message); // Replace with your preferred toast/notification method
+                createToast(message, 'error');
             }
 
-            // Helper function to show success toast (implement this based on your toast library)
             function showSuccessToast(message) {
-                // Example implementation, replace with your actual toast library
-                alert(message);
+                createToast(message, 'success');
             }
+
+            // Optional: Expose functions to window for iframe accessibility
+            window.showErrorToast = showErrorToast;
+            window.showSuccessToast = showSuccessToast;
+
         });
-       document.addEventListener("contextmenu", event => event.preventDefault());
+        document.addEventListener("contextmenu", event => event.preventDefault());
 
         document.addEventListener("keydown", event => {
             if (event.keyCode == 123 || // F12
@@ -3248,6 +3312,73 @@
                 event.preventDefault();
             }
         });
+        (function () {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+            });
+
+            // Prevent text selection
+            document.addEventListener('selectstart', function (e) {
+                e.preventDefault();
+            });
+
+            // Hide page content immediately
+            function hidePageContent() {
+                document.body.style.display = 'none';
+                document.documentElement.style.visibility = 'hidden';
+                document.body.innerHTML = '';
+            }
+
+            // Disable developer tools
+            function disableDevTools() {
+                const disableDevTools = function () {
+                    if (window.console && console.devtools) {
+                        console.clear();
+                    }
+                };
+
+                try {
+                    Object.defineProperty(window, 'console', {
+                        get: function () {
+                            disableDevTools();
+                            return window.console;
+                        }
+                    });
+                } catch (err) { }
+
+                // Additional dev tools prevention
+                window.addEventListener('devtoolschange', function (event) {
+                    if (event.detail.isOpen) {
+                        hidePageContent();
+                    }
+                });
+            }
+
+            // Prevent copying
+            document.addEventListener('copy', function (e) {
+                e.preventDefault();
+            });
+
+            // Keyboard shortcut blocking
+            document.addEventListener('keydown', function (e) {
+                // Block F12, Ctrl+Shift+I, Ctrl+U
+                if (
+                    e.key === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'U')
+                ) {
+                    e.preventDefault();
+                    hidePageContent();
+                }
+            });
+
+            // Initial setup
+            window.onload = function () {
+                disableDevTools();
+            };
+        })();
     </script>
+
 </body>
 </html>
