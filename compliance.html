@@ -1570,9 +1570,15 @@
                                 <textarea id="issueDescription" class="form-control" rows="3" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="transactionScreenshot">Transaction Screenshot *</label>
-                                <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>
-                                <p class="form-text">Please include transaction ID in the screenshot</p>
+                                <!-- <label for="transactionScreenshot">Transaction Screenshot *</label>
+    <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>-->
+                                <!--  <p class="form-text">Please include transaction ID in the screenshot</p>-->
+                                <label for="transactionScreenshot">After Payment send Transaction Screenshot on Whatsapp !</label>
+                                <a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer"
+                                   onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
+                                   class="social-link">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a> <label for="transactionScreenshot">Then click on the below button !</label>
                             </div>
                             <button type="submit" class="btn btn-block">Submit Payment Details</button>
                         </form>
@@ -1767,7 +1773,7 @@
                         </a>
 
                         <!-- WhatsApp Link - Will open app if installed, otherwise web -->
-                        <a href="https://wa.me/918309514273"
+                        <a href="https://wa.me/918309514273"  target="_blank" rel="noopener noreferrer"
                            onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
                            class="social-link">
                             <i class="fab fa-whatsapp"></i>
@@ -3087,11 +3093,11 @@
 
                     const patientName = document.getElementById('patientName').value;
                     const issueDescription = document.getElementById('issueDescription').value;
-                    const fileInput = document.getElementById('transactionScreenshot');
+                  //  const fileInput = document.getElementById('transactionScreenshot');
 
-                    // Validate form
-                    if (!patientName || !issueDescription || !fileInput.files[0]) {
-                        showErrorToast('Please fill all required fields and attach a transaction screenshot.');
+                    // Validate form || !fileInput.files[0] and attach a transaction screenshot.
+                    if (!patientName || !issueDescription ) {
+                        showErrorToast('Please fill all required fields ');
                         return;
                     }
 
@@ -3102,9 +3108,9 @@
 
                     try {
                         // Prepare image attachment with size constraint
-                        const imagePrep = await prepareImageAttachment(fileInput.files[0]);
+                      //  const imagePrep = await prepareImageAttachment(fileInput.files[0]);
 
-                        console.log(`Image compressed to: ${imagePrep.size}`);
+                       // console.log(`Image compressed to: ${imagePrep.size}`);
 
                         // Prepare email data
                         const emailData = {
@@ -3113,27 +3119,27 @@
                             timestamp: new Date().toLocaleString(),
                             paymentMethod: activePaymentMethod
                                 ? activePaymentMethod.querySelector('span').textContent
-                                : 'UPI Payment',
-                            imageSize: imagePrep.size
+                                : 'UPI Payment'
                         };
-
+                        //,
+                      //  imageSize: imagePrep.size
                         // Prepare attachment configuration
-                        const attachments = [imagePrep.attachment];
+                     //   const attachments = [imagePrep.attachment];
 
-                        // Send email with attachment
+                        // Send email with attachment,
+                      /*  {
+                            attachments: attachments
+                        }*/
                         const response = await emailjs.send(
                             SERVICE_ID,
                             PAYMENT_TEMPLATE_ID,
                             emailData,
                            
-                            USER_ID,
-                            {
-                                attachments: attachments
-                            }
+                            USER_ID
                         );
 
                         // Success handling
-                        showSuccessToast(`Payment confirmed! Image size: ${imagePrep.size}`);
+                        showSuccessToast(`Will Update you shortly! `);
                         paymentConfirmationForm.reset();
                         closePaymentModal();
 
@@ -3232,7 +3238,7 @@
                 alert(message);
             }
         });
-        document.addEventListener("contextmenu", event => event.preventDefault());
+       document.addEventListener("contextmenu", event => event.preventDefault());
 
         document.addEventListener("keydown", event => {
             if (event.keyCode == 123 || // F12
