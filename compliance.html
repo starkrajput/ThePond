@@ -1856,6 +1856,34 @@
     <script>
         // Wait for the DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function () {
+            // Payment Coutnry tab Wise Toggle -> 
+            // Select all country tabs and payment countries
+            const countryTabs = document.querySelectorAll('.country-tab');
+            const paymentCountries = document.querySelectorAll('.payment-country');
+
+            // Add click event listener to country tabs
+            countryTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and payment countries
+                    countryTabs.forEach(t => t.classList.remove('active'));
+                    paymentCountries.forEach(p => p.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Get the selected country
+                    const selectedCountry = this.getAttribute('data-country');
+
+                    // Find and activate corresponding payment country
+                    const activePaymentCountry = document.querySelector(`.payment-country.${selectedCountry}-payment`);
+                    if (activePaymentCountry) {
+                        activePaymentCountry.classList.add('active');
+                    }
+                });
+            });
+
+
+
             // Original script code (keeping original functionality)
             const header = document.getElementById('header');
             const backToTop = document.querySelector('.back-to-top');
