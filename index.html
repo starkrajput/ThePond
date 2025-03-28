@@ -7,91 +7,227 @@
     <title>Billa's Classical Homoeopathy</title>
     <link rel="icon" type="image/jpg" href="logob.jpg">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Reset all margins and padding */
         html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
-            margin: 0;
-            padding: 0;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            font-family: Arial, sans-serif;
+            background: white;
         }
 
-        #iframe-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            margin: 0;
-            padding: 0;
+        /* Ensure no spacing around the iframe */
+        body {
             display: block;
-            outline: none;
+            line-height: 0;
         }
 
-        /* Make favicon glow */
-        @keyframes glowEffect {
-            from {
-                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        #fullscreen-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0;
+            pointer-events: all;
+            background: transparent;
+        }
+
+        #iframe-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Beautiful Toast Notifications */
+        #beautiful-toast-container {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 9999;
+            pointer-events: none;
+            margin: 0;
+        }
+
+        .beautiful-toast {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 16px;
+            max-width: 90%;
+            width: auto;
+            min-width: 200px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.5;
+            border-left: 5px solid #2e7d32;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .beautiful-toast.error {
+                background: #ffebee;
+                color: #c62828;
+                border-left-color: #c62828;
             }
 
-            to {
-                box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
-            }
+        .beautiful-toast-icon {
+            margin-right: 12px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Layer 2: Content iframe with container -->
-    <div id="iframe-container">
-        <iframe id="content-frame" class="qweewkqweweqweqmeweqweqeqwk;lwqeklweqweqfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggdretrtwetwtewtwetewtwetwetwetwetwettwtetewkl;qwekweqklwqelkweqk" src="compliance.html" sandbox="allow-same-origin allow-scripts allow-forms" allowfullscreen frameborder="0" scrolling="auto"></iframe>
-    </div>
+    <!-- The !important on body styles ensures no margins -->
+    <iframe id="fullscreen-iframe"
+            src="compliance.html"
+            sandbox="allow-same-origin allow-scripts allow-forms"
+            allowfullscreen></iframe>
+
+    <div id="iframe-overlay"></div>
+
+    <script>
+        // ==================== IFRAME HANDLING ====================
+        function initializeFullscreenIframe() {
+            const iframe = document.getElementById('fullscreen-iframe');
+            const overlay = document.getElementById('iframe-overlay');
+
+            // Force reset any potential margins
+            document.body.style.margin = '0';
+            document.body.style.padding = '0';
+
+            function resizeElements() {
+                iframe.style.width = '100%';
+                iframe.style.height = '100vh';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+            }
+
+            window.addEventListener('resize', resizeElements);
+            resizeElements();
+
+            // Security enhancements
+            document.addEventListener("contextmenu", event => event.preventDefault());
+            document.addEventListener("keydown", event => {
+                if (event.keyCode == 123 ||
+                    (event.ctrlKey && event.shiftKey && event.keyCode == 73) ||
+                    (event.ctrlKey && event.shiftKey && event.keyCode == 74) ||
+                    (event.ctrlKey && event.keyCode == 85)) {
+                    event.preventDefault();
+                    showErrorToast("Developer tools are disabled");
+                }
+            });
+
+            document.addEventListener('touchmove', function (e) {
+                if (e.scale !== 1) e.preventDefault();
+            }, { passive: false });
+
+            if (window.location.href.includes('view-source:')) {
+                window.location.href = window.location.href.replace('view-source:', '');
+            }
+
+            iframe.addEventListener('load', function () {
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            });
+        }
+
+        // ==================== TOAST NOTIFICATIONS ====================
+        function showToast(message, type) {
+            const container = document.getElementById('beautiful-toast-container') || createToastContainer();
+            const toast = document.createElement('div');
+            toast.className = `beautiful-toast ${type}`;
+
+            const icon = document.createElement('span');
+            icon.className = 'beautiful-toast-icon';
+            icon.innerHTML = type === 'error' ? '❌' : '✅';
+
+            const text = document.createElement('span');
+            text.textContent = message;
+
+            toast.appendChild(icon);
+            toast.appendChild(text);
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 10);
+
+            setTimeout(() => {
+                dismissToast(toast);
+            }, 5000);
+
+            toast.addEventListener('click', () => dismissToast(toast));
+        }
+
+        function createToastContainer() {
+            const container = document.createElement('div');
+            container.id = 'beautiful-toast-container';
+            document.body.appendChild(container);
+            return container;
+        }
+
+        function dismissToast(toast) {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-20px)';
+            setTimeout(() => toast.remove(), 300);
+        }
+
+        function showSuccessToast(message) {
+            showToast(message, 'success');
+        }
+
+        function showErrorToast(message) {
+            showToast(message, 'error');
+        }
+
+        // ==================== INITIALIZATION ====================
+        window.addEventListener('load', () => {
+            // Double-check body margins
+            document.body.style.margin = '0';
+            document.body.style.padding = '0';
+
+            initializeFullscreenIframe();
+
+            (function () {
+                const originalToString = Function.prototype.toString;
+                Function.prototype.toString = function () {
+                    if (['showErrorToast', 'showSuccessToast', 'initializeFullscreenIframe'].includes(this.name)) {
+                        return `function ${this.name}() { [protected code] }`;
+                    }
+                    return originalToString.call(this);
+                };
+            })();
+        });
+    </script>
 </body>
-<script>
-// Basic protection against developer tools and source viewing
-document.addEventListener("contextmenu", event => event.preventDefault());
-document.addEventListener("keydown", event => {
-    // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-    if (event.keyCode == 123 ||
-        (event.ctrlKey && event.shiftKey && event.keyCode == 73) ||
-        (event.ctrlKey && event.shiftKey && event.keyCode == 74) ||
-        (event.ctrlKey && event.keyCode == 85)) {
-        event.preventDefault();
-    }
-});
-
-    // Disable view-source via URL
-    if (window.location.href.includes('view-source:')) {
-        window.location.href = window.location.href.replace('view-source:', '');
-    }
-
-    // Detect and respond to debugging attempts
-    const debuggerDetector = function() {
-        debugger; // This makes it harder to step through the code
-    };
-    setInterval(debuggerDetector, 100);
-
-    // Modify toString methods to prevent easy identification
-    Function.prototype.toString = function() {
-        return 'function() { [protected code] }';
-    };
-})();
-</script>
 </html>
