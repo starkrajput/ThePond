@@ -1288,7 +1288,7 @@
         <div class="container">
             <div class="hero-content animate__animated animate__fadeInLeft">
                 <h1 class="hero-title">Welcome to Billa's Classical Homoeopathy</h1>
-                <p class="hero-subtitle">Providing holistic healing through classical homoeopathic treatments by Dr. Akhil Billa, BHMS MD HOM (PSYCHIATRY)</p>
+                <p class="hero-subtitle">Providing holistic healing through classical homoeopathic treatments by Dr. Akhil Billa, BHMS, MD(HOM) PSYCHIATRY(JR)</p>
                 <a href="#appointment" class="btn">Book an Appointment</a>
             </div>
             <div class="hero-slider animate__animated animate__fadeInRight">
@@ -1324,9 +1324,14 @@
                 </div>
                 <div class="about-content animate__animated animate__fadeInRight">
                     <h2>Dr. Akhil Billa</h2>
-                    <h3>BHMS MD HOM (PSYCHIATRY)</h3>
+                    <h3>
+                        BHMS, MD(HOM) PSYCHIATRY(JR)
+                    </h3> 
+                    <h3>
+                        Reg No: PR-2415/H/202
+                    </h3>
                     <p>Billa's Classical Homoeopathy is a pioneering venture dedicated to delivering exemplary in-person consultation and tele-consultation-based healthcare services. Our clinic provides a cutting-edge homeopathy treatment facility, complemented by specialized tele-consultation services to serve patients nationwide and globally.</p>
-                    <p>Our mission is to furnish premier homeopathic healthcare solutions through a dual modality approach encompassing physical clinics and telemedicine. We deliver personalized constitutional homeopathy treatments for both chronic and acute ailments, ensuring safety, efficacy, and absence of side effects.</p>
+                    <p>Our mission is to furnish premier homeopathic healthcare solutions through a dual modality approach. We deliver personalized constitutional homeopathy treatments for both chronic and acute ailments, ensuring safety, efficacy, and absence of side effects.</p>
                     <p>Constitutional homeopathy treatment involves addressing the individual as a unified entity, encompassing physical, mental, and emotional aspects, as well as past and present symptoms. Over time, our homeopathic treatment bolsters and enhances the body's immune system, mitigating the risk of future disease occurrences.</p>
                     <a href="#appointment" class="btn">Book an Appointment</a>
                 </div>
@@ -1882,7 +1887,9 @@ effective treatment and highly recommend him."</p>
                         <li><a href="#diseases">Allergies</a></li>
                         <li><a href="#diseases">Gastrointestinal Disorders</a></li>
                         <li><a href="#diseases">Psychiatric Disorders</a></li>
-                        <li><a href="#diseases"> Kidney Disorders and treatment for all kind of acute and chronic diseases.</a></li>
+                        <li><a href="#diseases">Renal Disorders (Kidney)</a></li>
+                        <li><a href="#diseases">Nervous System Disorders</a></li>
+                        <li><a href="#diseases"> Treatment for all kind of acute and chronic diseases.</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -1947,7 +1954,7 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
             const countryTabs = document.querySelectorAll('.country-tab[data-country]');
             const paymentCountries = document.querySelectorAll('.payment-country');
 
-            // Add click event listener to country tabs
+           /* // Add click event listener to country tabs
             countryTabs.forEach(tab => {
                 tab.addEventListener('click', function () {
                     // Remove active class from all tabs and payment countries
@@ -1968,10 +1975,52 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
                     // Update WhatsApp link based on selected country
                     updateWhatsAppLink(selectedCountry);
                 });
-            });
+            });*/
             // Payment Country tab Wise Toggle
             // Select all country tabs and payment countries
-            
+            // Function to update payment form based on country
+            function updatePaymentForm(country) {
+                const whatsappContainer = document.getElementById('whatsappContainer');
+                const qrContainer = document.querySelector('.qr-container');
+
+                if (!whatsappContainer || !qrContainer) return;
+
+                // Update WhatsApp link based on country
+                if (country === 'india') {
+                    whatsappContainer.innerHTML = indiaWhatsAppLink;
+                    qrContainer.style.display = 'block'; // Show QR for India
+                } else if (country === 'us') {
+                    whatsappContainer.innerHTML = usWhatsAppLink;
+                    qrContainer.style.display = 'none'; // Hide QR for US
+                }
+            }
+
+            // Modify the country tab click event to call the new function
+            countryTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and payment countries
+                    countryTabs.forEach(t => t.classList.remove('active'));
+                    paymentCountries.forEach(p => p.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Get the selected country
+                    const selectedCountry = this.getAttribute('data-country');
+
+                    // Find and activate corresponding payment country
+                    const activePaymentCountry = document.querySelector(`.payment-country.${selectedCountry}-payment`);
+                    if (activePaymentCountry) {
+                        activePaymentCountry.classList.add('active');
+                    }
+
+                    // Update payment form based on selected country
+                    updatePaymentForm(selectedCountry);
+                });
+            });
+
+            // Set initial payment form (India by default)
+            updatePaymentForm('india');
 
             // Define WhatsApp links
             const indiaWhatsAppLink = '<a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer" ' +
@@ -1982,7 +2031,9 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
             const usWhatsAppLink = '<a href="https://wa.me/14698832747" target="_blank" rel="noopener noreferrer" ' +
                 'onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { ' +
                 'window.open(\'whatsapp://send?phone=14698832747\', \'_blank\'); return false; }" ' +
-                'class="social-link"><i class="fab fa-whatsapp"></i></a>';
+                'class="social-link"><i class="fab fa-whatsapp"></i></a> ' +
+                '<span style="margin-left: 10px; font-weight: bold; color: #333;">Zelle: +1 (469) 883-2747</span>';
+
 
             // Function to update WhatsApp link based on country
             function updateWhatsAppLink(country) {
@@ -3492,19 +3543,7 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
           
         });
         // Prevent right-click
-        document.addEventListener("contextmenu", event => event.preventDefault());
-
-        // Prevent common keyboard shortcuts
-        document.addEventListener("keydown", event => {
-            if (event.keyCode == 123 || // F12
-                (event.ctrlKey && event.shiftKey && event.keyCode == 73) || // Ctrl+Shift+I
-                (event.ctrlKey && event.shiftKey && event.keyCode == 74) || // Ctrl+Shift+J
-                (event.ctrlKey && event.keyCode == 85) || // Ctrl+U
-                (event.ctrlKey && event.keyCode == 83) || // Ctrl+S
-                (event.ctrlKey && event.keyCode == 65)) { // Ctrl+A
-                event.preventDefault();
-            }
-        });
+      
 
     </script>
     <style>
