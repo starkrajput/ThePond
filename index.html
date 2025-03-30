@@ -1359,16 +1359,28 @@
                         <a href="#appointment" class="btn btn-outline">Book Now</a>
                     </div>
                 </div>
+                <div class="service-card animate__animated animate__fadeInUp">
+                    <div class="service-img">
+                        <img src="b3.jpg" alt="Consultation">
+                    </div>
+                    <div class="service-content">
+                        <h3>Personalized Consultation</h3>
+                        <p>
+                            Kidney Disorders and treatment for all kind of acute and chronic diseases.
+                        </p>
+                        <a href="#appointment" class="btn btn-outline">Book Now</a>
+                    </div>
+                </div>
                 <!--  <div class="service-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                      <div class="service-img">
-                          <img src="b4.jpg" alt="Follow-up">
-                      </div>
-                      <div class="service-content">
-                          <h3>Follow-up Care</h3>
-                          <p>Regular follow-up sessions to monitor your progress and adjust treatment plans as needed for optimal results.</p>
-                          <a href="#appointment" class="btn btn-outline">Book Now</a>
-                      </div>
-                  </div>-->
+          <div class="service-img">
+              <img src="b4.jpg" alt="Follow-up">
+          </div>
+          <div class="service-content">
+              <h3>Follow-up Care</h3>
+              <p>Regular follow-up sessions to monitor your progress and adjust treatment plans as needed for optimal results.</p>
+              <a href="#appointment" class="btn btn-outline">Book Now</a>
+          </div>
+      </div>-->
             </div>
         </div>
     </section>
@@ -1535,14 +1547,14 @@
                                     <i class="fas fa-qrcode"></i>
                                     <span>QR Code</span>
                                     <!--   <div class="qr-popup">
-                                           <img src="qr-code.jpg" alt="UPI QR Code">
-                                           <p>Scan to pay ₹500</p>
-                                       </div>-->
+                       <img src="qr-code.jpg" alt="UPI QR Code">
+                       <p>Scan to pay ₹500</p>
+                   </div>-->
                                 </div>
                             </div>
                             <p class="mt-20">UPI: 8309514273@ibl</p>
                             <p>Phone: +91 8309514273</p>
-                            <button id="upiPayNowBtn" class="btn btn-primary mt-20">Pay Now</button>
+                            <!-- <button id="upiPayNowBtn" class="btn btn-primary mt-20">Pay Now</button>-->
                         </div>
 
                         <div class="payment-country us-payment">
@@ -1554,7 +1566,10 @@
                                 </div>
                             </div>
                             <p class="mt-20">Zelle: +1 (469) 883-2747</p>
+
+
                         </div>
+                        <button id="upiPayNowBtn" class="btn btn-primary mt-20">Pay Now</button>
                     </div>
 
                     <!-- Payment Confirmation Form (Initially Hidden) -->
@@ -1571,14 +1586,25 @@
                             </div>
                             <div class="form-group">
                                 <!-- <label for="transactionScreenshot">Transaction Screenshot *</label>
-                                <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>-->
+    <input type="file" id="transactionScreenshot" class="form-control" accept="image/*" required>-->
                                 <!--  <p class="form-text">Please include transaction ID in the screenshot</p>-->
                                 <label for="transactionScreenshot">After Payment send Transaction Screenshot on Whatsapp !</label>
-                                <a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer"
-                                   onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
-                                   class="social-link">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a> <label for="transactionScreenshot">Then click on the below button !</label>
+                                <!--<div id="whatsappLinks">
+        <a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer"
+           onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=918309514273', '_blank'); return false; }"
+           class="social-link india-whatsapp-link">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://wa.me/14698832747" target="_blank" rel="noopener noreferrer"
+           onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { window.open('whatsapp://send?phone=14698832747', '_blank'); return false; }"
+           class="social-link us-whatsapp-link" style="display: none;">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>-->
+                                <div id="whatsappContainer">
+                                    <!-- WhatsApp link will be dynamically inserted here by JavaScript -->
+                                </div>
+                                <label for="transactionScreenshot">Then click on the below button !</label>
                             </div>
                             <button type="submit" class="btn btn-block">Submit Payment Details</button>
                         </form>
@@ -1597,8 +1623,8 @@
                             <input type="tel" id="phone" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <label for="email">Email Address </label>
+                            <input type="email" id="email" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label for="date">Preferred Date *</label>
@@ -1654,12 +1680,18 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="testimonial-text">"Dr. Akhil Billa's treatment has been life-changing for me. After suffering from chronic eczema for years, I finally found relief through his homeopathic approach. Highly recommended!"</p>
+                        <p class="testimonial-text">
+                            "I had been suffering from a chronic non-healing venous ulcer for 10 years, and nothing seemed
+                            to work. But after consulting Dr. Akhil Billa and following his treatment, I saw remarkable
+                            improvement within just two months. His expertise and care made all the difference. I am truly
+                            grateful for his help and highly recommend him to anyone in need of effective medical
+                            treatment."
+                        </p>
                         <div class="testimonial-author">
                             <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
-                                <h4>Priya Sharma</h4>
-                                <p>Eczema Patient</p>
+                                <h4>-Dr. Showrya</h4>
+                                <!--<p>Eczema Patient</p>-->
                             </div>
                         </div>
                     </div>
@@ -1673,12 +1705,16 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="testimonial-text">"I had been suffering from severe allergies for years. After just a few months of treatment with Dr. Billa, my symptoms have significantly reduced. The tele-consultation option is so convenient!"</p>
+                        <p class="testimonial-text">I was diagnosed with nail bed onychomycosis, and other doctors told me that nail removal was
+the only option. However, after consulting Dr. Akhil, I was treated with just a single dose of
+medication, and within a month, the fungal infection was completely gone—without needing
+nail removal! I’m truly grateful for his expertise and highly recommend him for effective and
+non-invasive treatments."</p>
                         <div class="testimonial-author">
                             <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
-                                <h4>Rajesh Kumar</h4>
-                                <p>Allergy Patient</p>
+                                <h4>-Rodasi Reddy</h4>
+                                <!-- <p>Allergy Patient</p>-->
                             </div>
                         </div>
                     </div>
@@ -1692,12 +1728,39 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p class="testimonial-text">"My son had recurring respiratory issues, and conventional treatments weren't helping. Dr. Akhil's homeopathic approach has made a remarkable difference. He's patient, thorough, and truly cares about his patients."</p>
+                        <p class="testimonial-text">I had been suffering from severe eczema on my foot for five years, with constant itching and
+no relief despite trying multiple treatments. After consulting Dr. Akhil Billa, I noticed a
+significant improvement within just a few doses of his prescribed medicine. Now, my eczema is
+completely cured! I am extremely thankful for his expertise and highly recommend him to
+anyone struggling with long-term skin conditions."</p>
                         <div class="testimonial-author">
                             <!-- <img src="disease-acidity.jpg" alt="Patient">-->
                             <div>
-                                <h4>Meera Patel</h4>
-                                <p>Parent of Pediatric Patient</p>
+                                <h4>-Md. Sameera</h4>
+                                <!-- <p>Parent of Pediatric Patient</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text">I am a 48-year-old mechanic and was struggling with severe breathlessness while sleeping. I
+was diagnosed with adenoids, and an ENT doctor advised surgery as the only solution.
+However, after consulting Dr. Akhil Billa and taking his prescribed medicine, I experienced 90%
+relief within just two months—without needing surgery! I am extremely thankful for his
+effective treatment and highly recommend him."</p>
+                        <div class="testimonial-author">
+                            <!-- <img src="disease-acidity.jpg" alt="Patient">-->
+                            <div>
+                                <h4>-Sheik Basha</h4>
+                                <!-- <p>Parent of Pediatric Patient</p>-->
                             </div>
                         </div>
                     </div>
@@ -1706,6 +1769,7 @@
                     <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
                     <div class="testimonial-dots">
                         <span class="dot active"></span>
+                        <span class="dot"></span> 
                         <span class="dot"></span>
                         <span class="dot"></span>
                     </div>
@@ -1714,7 +1778,6 @@
             </div>
         </div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1745,7 +1808,7 @@
                         </div>
                         <div class="info-content">
                             <h3>Email</h3>
-                            <p>billa.akhil1974@gmail.com</p>
+                            <p>billa.akhil666@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-card">
@@ -1792,7 +1855,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
@@ -1826,7 +1888,7 @@
                     <h3>Contact Info</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Mansoorabad, L. B. Nagar, Hyderabad, Telangana, 500068, India</p>
                     <p><i class="fas fa-phone-alt"></i> +91 8309514273</p>
-                    <p><i class="fas fa-envelope"></i> billa.akhil1974@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> billa.akhil666@gmail.com</p>
                     <!-- Instagram Link - Will open app if installed, otherwise web -->
                     <div class="social-links">
                         <!--<a href="https://www.instagram.com/billasclassicalhomoeopathy_?utm_source=qr" class="social-link"
@@ -1878,10 +1940,10 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
         // Wait for the DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function () {
 
-
             // Payment Coutnry tab Wise Toggle ->
             // Select all country tabs and payment countries
-            const countryTabs = document.querySelectorAll('.country-tab');
+            //const countryTabs = document.querySelectorAll('.country-tab');
+            const countryTabs = document.querySelectorAll('.country-tab[data-country]');
             const paymentCountries = document.querySelectorAll('.payment-country');
 
             // Add click event listener to country tabs
@@ -1902,9 +1964,39 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
                     if (activePaymentCountry) {
                         activePaymentCountry.classList.add('active');
                     }
+                    // Update WhatsApp link based on selected country
+                    updateWhatsAppLink(selectedCountry);
                 });
             });
+            // Payment Country tab Wise Toggle
+            // Select all country tabs and payment countries
+            
 
+            // Define WhatsApp links
+            const indiaWhatsAppLink = '<a href="https://wa.me/918309514273" target="_blank" rel="noopener noreferrer" ' +
+                'onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { ' +
+                'window.open(\'whatsapp://send?phone=918309514273\', \'_blank\'); return false; }" ' +
+                'class="social-link"><i class="fab fa-whatsapp"></i></a>';
+
+            const usWhatsAppLink = '<a href="https://wa.me/14698832747" target="_blank" rel="noopener noreferrer" ' +
+                'onclick="if(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { ' +
+                'window.open(\'whatsapp://send?phone=14698832747\', \'_blank\'); return false; }" ' +
+                'class="social-link"><i class="fab fa-whatsapp"></i></a>';
+
+            // Function to update WhatsApp link based on country
+            function updateWhatsAppLink(country) {
+                const whatsappContainer = document.getElementById('whatsappContainer');
+                if (!whatsappContainer) return;
+
+                if (country === 'india') {
+                    whatsappContainer.innerHTML = indiaWhatsAppLink;
+                } else if (country === 'us') {
+                    whatsappContainer.innerHTML = usWhatsAppLink;
+                }
+            }
+
+            // Set initial WhatsApp link (India by default)
+            updateWhatsAppLink('india');
             // Original script code (keeping original functionality)
             const header = document.getElementById('header');
             const backToTop = document.querySelector('.back-to-top');
@@ -2334,6 +2426,7 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
                     // Reset day type tabs when country changes
                     updateAvailableTimings();
                     updateTimeSelectOptions();
+                    updateWhatsAppLink(countrySelect);
                 });
             }
 
@@ -3363,7 +3456,7 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
                     };
 
                     // Validate form
-                    const requiredFields = ['name', 'phone', 'email', 'date', 'country', 'time', 'complaint'];
+                    const requiredFields = ['name', 'phone',  'date', 'country', 'time', 'complaint'];
                     const missingFields = requiredFields.filter(field => !formData[field]);
 
                     if (missingFields.length > 0) {
