@@ -3538,7 +3538,19 @@ if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
                         });
                 });
             }
+  document.addEventListener("contextmenu", event => event.preventDefault());
 
+  // Prevent common keyboard shortcuts
+  document.addEventListener("keydown", event => {
+      if (event.keyCode == 123 || // F12
+          (event.ctrlKey && event.shiftKey && event.keyCode == 73) || // Ctrl+Shift+I
+          (event.ctrlKey && event.shiftKey && event.keyCode == 74) || // Ctrl+Shift+J
+          (event.ctrlKey && event.keyCode == 85) || // Ctrl+U
+          (event.ctrlKey && event.keyCode == 83) || // Ctrl+S
+          (event.ctrlKey && event.keyCode == 65)) { // Ctrl+A
+          event.preventDefault();
+      }
+  });
             // Fallback error handling function
           
         });
